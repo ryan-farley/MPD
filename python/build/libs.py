@@ -56,7 +56,13 @@ libmad = AutotoolsProject(
     ['--disable-shared', '--enable-static'],
     autogen=True,
 )
-
+libmpdclient = AutotoolsProject(
+        'http://www.musicpd.org/download/libmpdclient/2/libmpdclient-2.9.tar.xz',
+        '4b101a36e5c0cf967dc063391260ddbf',
+        'lib/libmpc.a',
+        ['--disable-shared', '--enable-static', '--disable-documentation'],
+        autogen=True,
+)
 ffmpeg = FfmpegProject(
     'http://ffmpeg.org/releases/ffmpeg-3.2.2.tar.xz',
     '3f01bd1fe1a17a277f8c84869e5d9192b4b978cb660872aa2b54c3cc8a2fedfc',
