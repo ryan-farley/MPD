@@ -11,6 +11,15 @@ libogg = AutotoolsProject(
     ['--disable-shared', '--enable-static'],
 )
 
+libnfs = AutotoolsProject(
+        'https://sites.google.com/site/libnfstarballs/li/libnfs-1.9.7.tar.gz',
+        '8041b25a5cd5ee3e58e0900fb07ab2f1',
+        'lib/libnfs.a',
+        ['--disable-shared', '--enable-static'],
+        cppflags='-DANDROID',
+        autogen=True,
+)
+
 libvorbis = AutotoolsProject(
     'http://downloads.xiph.org/releases/vorbis/libvorbis-1.3.5.tar.xz',
     '28cb28097c07a735d6af56e598e1c90f',

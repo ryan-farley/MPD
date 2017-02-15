@@ -104,6 +104,7 @@ class AndroidNdkToolchain:
 # a list of third-party libraries to be used by MPD on Android
 from build.libs import *
 thirdparty_libs = [
+    libnfs,
     libmpdclient,
     libogg,
     libvorbis,
@@ -147,6 +148,7 @@ configure = [
     '--enable-silent-rules',
 
     '--disable-icu',
+    '--enable-nfs',
 
 ] + configure_args
 
