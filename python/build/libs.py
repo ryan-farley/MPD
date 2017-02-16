@@ -4,6 +4,12 @@ from build.autotools import AutotoolsProject
 from build.ffmpeg import FfmpegProject
 from build.boost import BoostProject
 
+libsamplerate = AutotoolsProject (
+    'http://www.mega-nerd.com/SRC/libsamplerate-0.1.9.tar.gz',
+    '2b78ae9fe63b36b9fbb6267fad93f259',
+    'lib/libsamplerate.a',
+    ['--disable-fftw', '--disable-sndfile', '--disable-shared', '--enable-static'],
+)
 libogg = AutotoolsProject(
     'http://downloads.xiph.org/releases/ogg/libogg-1.3.2.tar.xz',
     '5c3a34309d8b98640827e5d0991a4015',
@@ -71,6 +77,12 @@ libmpdclient = AutotoolsProject(
         'lib/libmpc.a',
         ['--disable-shared', '--enable-static', '--disable-documentation'],
         autogen=True,
+)
+sqlite = AutotoolsProject(
+        'https://www.sqlite.org/2017/sqlite-autoconf-3170000.tar.gz',
+        '450a95a7bde697c9fe4de9ae2fffdcca',
+        '.libs/libsqlite3.a',
+        ['--enable-static', '--disable-shared'],
 )
 ffmpeg = FfmpegProject(
     'http://ffmpeg.org/releases/ffmpeg-3.2.2.tar.xz',

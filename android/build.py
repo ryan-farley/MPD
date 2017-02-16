@@ -104,6 +104,7 @@ class AndroidNdkToolchain:
 # a list of third-party libraries to be used by MPD on Android
 from build.libs import *
 thirdparty_libs = [
+    sqlite,
     libnfs,
     libmpdclient,
     libogg,
@@ -149,6 +150,7 @@ configure = [
 
     '--disable-icu',
     '--enable-nfs',
+    '--enable-sqlite',
 
 ] + configure_args
 
