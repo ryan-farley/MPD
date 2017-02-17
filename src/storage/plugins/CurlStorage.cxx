@@ -78,9 +78,11 @@ CurlStorage::MapUTF8(const char *uri_utf8) const
 	if (StringIsEmpty(uri_utf8))
 		return base;
 
-	// TODO: escape the given URI
-
-	return PathTraitsUTF8::Build(base.c_str(), uri_utf8);
+	char *uri_esc = curl_easy_escape(curl, uri_utf8, 0);	
+	std::string uri = PathTraitsUTF8::Build(base.c_str(), uri_esc);
+	curl_free(uri_esc);
+	
+	return uri;
 }
 
 const char *
@@ -425,10 +427,10 @@ protected:
 StorageFileInfo
 CurlStorage::GetInfo(const char *uri_utf8, gcc_unused bool follow)
 {
-	// TODO: escape the given URI
-
+	char *uri_esc = curl_easy_escape(curl, uri_utf8, 0);
 	std::string uri = base;
-	uri += uri_utf8;
+	uri += uri_esc;
+	curl_free(uri_esc);
 
 	return HttpGetInfoOperation(*curl, uri.c_str()).Perform();
 }
@@ -519,10 +521,10 @@ protected:
 StorageDirectoryReader *
 CurlStorage::OpenDirectory(const char *uri_utf8)
 {
-	// TODO: escape the given URI
-
+	char *uri_esc = curl_easy_escape(curl, uri_utf8, 0);
 	std::string uri = base;
-	uri += uri_utf8;
+	uri += uri_esc;
+	curl_free(uri_esc);
 
 	/* collection URIs must end with a slash */
 	if (uri.back() != '/')
